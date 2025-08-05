@@ -1,0 +1,74 @@
+{
+  "name": "n8n-nodes-searxng-request",
+  "version": "0.1.1",
+  "description": "N8n search node using SearXNG",
+  "keywords": [
+    "n8n",
+    "n8n-nodes",
+    "n8n-community",
+    "n8n-community-nodes",
+    "n8n-community-nodes-searxng-request",
+    "n8n-community-node-package"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/annhdev/n8n-nodes-searxng-request.git",
+  "author": {
+    "name": "annhdev",
+    "email": "annh.dev@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/annhdev/n8n-nodes-searxng-request.git"
+  },
+  "engines": {
+    "node": ">=20.15"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "npx rimraf dist && tsc && gulp build:icons",
+    "dev": "tsc --watch",
+    "deploy-docker": "npx rimraf dist && tsc && gulp build:icons && gulp deploy:docker && docker restart n8n",
+    "format": "prettier nodes credentials --write",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix",
+    "prepublishOnly": "npm run build && npm run lint -c eslint.config.prepublish.js nodes credentials package.json",
+    "publish": "npm publish",
+    "test": "set NODE_OPTIONS=\"--experimental-vm-modules\"&jest --detectOpenHandles"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/SearxngApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/SearxngApi/SearxngApi.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.32.0",
+    "@types/expect": "^1.20.4",
+    "@types/jest": "^30.0.0",
+    "@typescript-eslint/parser": "~8.38.0",
+    "eslint": "^9.32.0",
+    "eslint-plugin-n8n-nodes-base": "^1.16.3",
+    "globals": "^16.3.0",
+    "gulp": "^5.0.1",
+    "jest": "^30.0.5",
+    "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
+    "ts-jest": "^29.4.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.8.3"
+  },
+  "overrides": {
+    "form-data": "^4.0.4"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}
